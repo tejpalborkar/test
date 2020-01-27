@@ -2,8 +2,15 @@ pipeline {
   agent any
   stages {
     stage('compile') {
+      agent {
+        dockerfile {
+          filename 'Dockerfile'
+        }
+
+      }
       steps {
         sh 'sh "mvn clean compile"'
+        tool 'maven'
       }
     }
 
